@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Expense Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>💰 AI Expense Tracker</h1>
+            <p>Track, predict, and manage your expenses smarter</p>
+        </header>
+
+        <!-- Add Expense Form -->
+        <section class="add-expense">
+            <h2>Add New Expense</h2>
+            <form id="expenseForm">
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" required>
+                        <option value="Food">🍔 Food</option>
+                        <option value="Transport">🚗 Transport</option>
+                        <option value="Entertainment">🎮 Entertainment</option>
+                        <option value="Shopping">🛍️ Shopping</option>
+                        <option value="Utilities">💡 Utilities</option>
+                        <option value="Other">📦 Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount ($)</label>
+                    <input type="number" id="amount" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" id="description" placeholder="Brief description...">
+                </div>
+                <div class="form-group">
+                    <label for="payment_method">Payment Method</label>
+                    <select id="payment_method">
+                        <option value="Cash">Cash</option>
+                        <option value="Credit Card">Credit Card</option>
+                        <option value="Debit Card">Debit Card</option>
+                        <option value="UPI">UPI</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">Add Expense</button>
+            </form>
+        </section>
+
+        <!-- Prediction Section -->
+        <section class="prediction">
+            <h2>🔮 AI Expense Prediction</h2>
+            <div class="prediction-form">
+                <select id="predict_category">
+                    <option value="Food">🍔 Food</option>
+                    <option value="Transport">🚗 Transport</option>
+                    <option value="Entertainment">🎮 Entertainment</option>
+                    <option value="Shopping">🛍️ Shopping</option>
+                    <option value="Utilities">💡 Utilities</option>
+                    <option value="Other">📦 Other</option>
+                </select>
+                <input type="date" id="predict_date">
+                <button id="predictBtn" class="btn-secondary">Predict Expense</button>
+            </div>
+            <div id="predictionResult" class="prediction-result"></div>
+            <div id="predictionDetails" style="margin-top: 10px; font-size: 0.9rem; color: #666;"></div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats">
+            <h2>📊 Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Expenses</h3>
+                    <p id="totalExpenses">$0.00</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Category Breakdown</h3>
+                    <div id="categoryBreakdown"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expense List -->
+        <section class="expense-list">
+            <h2>📋 Recent Expenses</h2>
+            <div id="expensesContainer"></div>
+        </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
